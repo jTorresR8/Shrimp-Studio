@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import FileUpload from './components/FileUpload';
+import SongList from './components/SongList';
+import SignUp from './createUserWithEmailAndPassword';
+import SignIn from './SignIn';
+import { useAuth } from './useAuth'; 
 
 function App() {
-  return (
+  const { user } = useAuth(); 
+  const [refreshKey, setRefreshKey] = useState(0);
+  const refreshSongs = () => {
+    setRefreshKey((prevKey) => prevKey + 1);
+  };
+
+  const authenticatedComponents = user ? (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Music Upload</h1>
+      <FileUpload onUploadSuccess={refreshSongs} />
+      <SongList userUid={user.uid} key={refreshKey} onUploadSuccess={refreshSongs} />
     </div>
+  ) : (
+    <Navigate to="/signup" /> 
+  );
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/signup" element={!user ? <SignUp /> : <Navigate to="/home" />} />
+        <Route path="/signin" element={!user ? <SignIn /> : <Navigate to="/home" />} />
+        <Route path="/home" element={authenticatedComponents} />
+        <Route path="/" element={<Navigate to="/signup" />} />
+      </Routes>
+    </Router>
   );
 }
 
