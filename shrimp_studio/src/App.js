@@ -1,38 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import FileUpload from './components/FileUpload';
 import SongList from './components/SongList';
-import SignUp from './SignUp.js';
-import SignIn from './SignIn';
-import { useAuth } from './useAuth'; 
-import { SongLists } from './components/storage_list_all.js';
+import SignInandSignUp from './components/SignInandSignUp';
+import AccountPage from './components/AccountPage';
+import { useAuth } from './useAuth';
+import NavigationBar from './components/NavigationBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebase-config';
 
 function App() {
-  const { user } = useAuth(); 
+  const { user } = useAuth();
   const [refreshKey, setRefreshKey] = useState(0);
-  const refreshSongs = () => {
-    setRefreshKey((prevKey) => prevKey + 1);
-  
-};
+  const [songs, setSongs] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
 
-  const authenticatedComponents = user ? (
-    <div className="App">
-      <h1>Music Upload</h1>
-      <FileUpload onUploadSuccess={refreshSongs} />
-      <SongList userUid={user.uid} key={refreshKey} onUploadSuccess={refreshSongs} />
-      <SongLists userUid={user.uid}/>
-    </div>
-  ) : (
-    <Navigate to="/signup" /> 
-  );
+  useEffect(() => {
+    const fetchSongs = async () => {
+      const querySnapshot = await getDocs(collection(db, 'songs'));
+      const fetchedSongs = querySnapshot.docs.map((doc) => ({
+        songId: doc.id,
+        ...doc.data(),
+      }));
+      setSongs(fetchedSongs);
+    };
+
+    fetchSongs();
+  }, [refreshKey]);
+
+  const handleUpdatePlaylist = (playlistName, newSongs) => {
+    setPlaylists((prevPlaylists) =>
+      prevPlaylists.map((playlist) =>
+        playlist.name === playlistName
+          ? { ...playlist, songs: [...playlist.songs, ...newSongs] }
+          : playlist
+      )
+    );
+  };
 
   return (
     <Router>
+      <NavigationBar user={user} />
       <Routes>
-        <Route path="/signup" element={!user ? <SignUp /> : <Navigate to="/home" />} />
-        <Route path="/signin" element={!user ? <SignIn /> : <Navigate to="/home" />} />
-        <Route path="/home" element={authenticatedComponents} />
-        <Route path="/" element={<Navigate to="/signup" />} />
+        <Route path="/signin" element={!user ? <SignInandSignUp /> : <Navigate to="/home" />} />
+        <Route path="/home" element={user ? (
+          <div className="App container">
+            <h1 className="my-4">Shrimp Studio</h1>
+            <div className="row">
+              <div className="col-md-6">
+                <h3>Welcome to Shrimp Studio</h3>
+                <p>Explore and share your music with the world!</p>
+              </div>
+              <div className="col-md-6">
+                <h3>My Songs</h3>
+                <SongList userUid={user.uid} key={refreshKey} />
+              </div>
+            </div>
+          </div>
+        ) : <Navigate to="/signin" />} />
+        <Route path="/account" element={user ? <AccountPage songs={songs} playlists={playlists} onUploadSuccess={() => setRefreshKey((prevKey) => prevKey + 1)} onSavePlaylist={(newPlaylist) => setPlaylists([...playlists, newPlaylist])} onUpdatePlaylist={handleUpdatePlaylist} /> : <Navigate to="/signin" />} />
+        <Route path="/" element={<Navigate to="/signin" />} />
       </Routes>
     </Router>
   );

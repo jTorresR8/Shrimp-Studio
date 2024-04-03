@@ -1,33 +1,30 @@
 import { getStorage, ref, listAll } from "firebase/storage";
 import React, { useState, useEffect } from 'react';
 
-
-
 const storage = getStorage();
-const songs = [];
 
-// Create a reference under which you want to list
-const listRef = ref(storage, 'music/');
+function SongLists() {
+  const [songs, setSongs] = useState([]);
 
-// Find all the prefixes and items.
-listAll(listRef)
-  .then((res) => {
-    res.items.forEach((itemRef) => {
-      console.log(itemRef.name);
-      songs.push(itemRef.name);
-    });
-  }).catch((error) => {
-  });
+  useEffect(() => {
+    const listRef = ref(storage, 'music/');
+    listAll(listRef)
+      .then((res) => {
+        const songNames = res.items.map((itemRef) => itemRef.name);
+        setSongs(songNames);
+      })
+      .catch((error) => {
+        console.error("Error listing songs:", error);
+      });
+  }, []);
 
-  function SongLists() {
-    return (
-      <ol>
-        {songs.map((song) => (
-          <li>{song}</li>
-        ))}
-      </ol>
-    );
-  }
+  return (
+    <ol>
+      {songs.map((song, index) => (
+        <li key={index}>{song}</li>
+      ))}
+    </ol>
+  );
+}
 
-  export {listAll, SongLists};
-
+export { SongLists };
