@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MDBNavbar, MDBNavbarNav, MDBNavbarItem, MDBContainer } from 'mdb-react-ui-kit';
 import { getAuth, signOut } from 'firebase/auth';
+import '../NavigationBar.css'; // Import your CSS file
+
 
 
 const NavigationBar = ({ user }) => {

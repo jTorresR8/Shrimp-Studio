@@ -1,0 +1,19 @@
+.navbar {
+    background-color: rgba(0, 123, 255, 0.5); /* Semi-transparent blue */
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+  }
+  
+
+  .nav-link:hover {
+    color: lightblue;
+  }
+  

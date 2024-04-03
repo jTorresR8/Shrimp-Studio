@@ -6,10 +6,37 @@ import AccountPage from './components/AccountPage';
 import { useAuth } from './useAuth';
 import NavigationBar from './components/NavigationBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from './firebase-config';
 
 function App() {
   const { user } = useAuth();
   const [refreshKey, setRefreshKey] = useState(0);
+  const [songs, setSongs] = useState([]);
+  const [playlists, setPlaylists] = useState([]);
+
+  useEffect(() => {
+    const fetchSongs = async () => {
+      const querySnapshot = await getDocs(collection(db, 'songs'));
+      const fetchedSongs = querySnapshot.docs.map((doc) => ({
+        songId: doc.id,
+        ...doc.data(),
+      }));
+      setSongs(fetchedSongs);
+    };
+
+    fetchSongs();
+  }, [refreshKey]);
+
+  const handleUpdatePlaylist = (playlistName, newSongs) => {
+    setPlaylists((prevPlaylists) =>
+      prevPlaylists.map((playlist) =>
+        playlist.name === playlistName
+          ? { ...playlist, songs: [...playlist.songs, ...newSongs] }
+          : playlist
+      )
+    );
+  };
 
   return (
     <Router>
@@ -31,7 +58,7 @@ function App() {
             </div>
           </div>
         ) : <Navigate to="/signin" />} />
-        <Route path="/account" element={user ? <AccountPage onUploadSuccess={() => setRefreshKey((prevKey) => prevKey + 1)} /> : <Navigate to="/signin" />} />
+        <Route path="/account" element={user ? <AccountPage songs={songs} playlists={playlists} onUploadSuccess={() => setRefreshKey((prevKey) => prevKey + 1)} onSavePlaylist={(newPlaylist) => setPlaylists([...playlists, newPlaylist])} onUpdatePlaylist={handleUpdatePlaylist} /> : <Navigate to="/signin" />} />
         <Route path="/" element={<Navigate to="/signin" />} />
       </Routes>
     </Router>
