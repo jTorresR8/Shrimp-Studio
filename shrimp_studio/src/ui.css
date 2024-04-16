@@ -1,0 +1,92 @@
+.playlist-filler{
+    background-color: rgb(54, 54, 54);
+    border-radius: 18px;
+    padding: 8px;
+    padding-left: 20px;
+    color: white;
+    border: none;
+}
+
+.playlist-filler::placeholder{
+    color:rgb(180, 180, 180);
+    font-weight: 500;
+}
+
+.playlist-button{
+    background-color: #ff5c20;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    margin: 20px;
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: transform 0.05s ease-in-out;
+}
+
+.playlist-button:hover{
+    /* background-color: #ff6d38; */
+    transform: scale(1.02);
+}
+
+.App-container{
+    background-color: black;
+}
+
+.main{
+    background-color: rgb(31, 31, 31);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 30px;
+    color: white;
+}
+
+.col-md-4{
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border-radius: 20px;
+    padding: 50px;
+    margin: 20px;
+}
+
+.col-md-4 p,
+.col-md-4 h3 {
+  padding-left: 20px; /* Adjust as needed */
+}
+
+
+.col-md-7{
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 20px;
+    margin-left: 0px;
+}
+
+.col-md-7 h3 {
+  padding-left: 20px; /* Adjust as needed */
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.col-md-7 p{
+    margin: 10px;
+    padding: 10px;
+    padding-left: 20px; /* Adjust as needed */
+}
+
+.col-md-7 p:hover{
+    background-color: rgb(40, 40, 40);
+    border-radius: 10px;
+    cursor:pointer;
+}
+
+.container{
+    background-color: black;
+}
+
+.form-check-input{
+    margin: 10px;
+    padding: 10px;
+}

@@ -30,11 +30,12 @@ const PlaylistManager = ({ songs = [], onSavePlaylist, playlists = [], onUpdateP
     <div>
       <input
         type="text"
-        placeholder="Playlist Name"
+        placeholder="Name your playlist..."
         value={playlistName}
         onChange={(e) => setPlaylistName(e.target.value)}
+        className = "playlist-filler"
       />
-      <button onClick={handleSavePlaylist}>Save New Playlist</button>
+      <button className='playlist-button' onClick={handleSavePlaylist}>Save playlist</button>
       <div>
         <select value={selectedPlaylist} onChange={(e) => setSelectedPlaylist(e.target.value)}>
           <option value="">Select a playlist</option>
@@ -42,13 +43,15 @@ const PlaylistManager = ({ songs = [], onSavePlaylist, playlists = [], onUpdateP
             <option key={index} value={playlist.name}>{playlist.name}</option>
           ))}
         </select>
-        <button onClick={handleAddSongsToPlaylist}>Add Songs to Playlist</button>
+        <button className='playlist-button' onClick={handleAddSongsToPlaylist}>Add songs</button>
       </div>
       <div>
         {songs && songs.map((song, index) => (
           <div key={index}>
             <input
+             class= "form-check-input"
               type="checkbox"
+              value= ""
               checked={selectedSongs.includes(song.songId)}
               onChange={() => handleSongSelection(song.songId)}
             />
