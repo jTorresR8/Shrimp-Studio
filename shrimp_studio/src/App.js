@@ -8,6 +8,7 @@ import NavigationBar from './components/NavigationBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase-config';
+import './ui.css'
 
 function App() {
   const { user } = useAuth();
@@ -44,15 +45,15 @@ function App() {
       <Routes>
         <Route path="/signin" element={!user ? <SignInandSignUp /> : <Navigate to="/home" />} />
         <Route path="/home" element={user ? (
-          <div className="App container">
-            <h1 className="my-4">Shrimp Studio</h1>
+          <div className="App-container">
+            <h1 className="main">Shrimp Studio</h1>
             <div className="row">
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <h3>Welcome to Shrimp Studio</h3>
                 <p>Explore and share your music with the world!</p>
               </div>
-              <div className="col-md-6">
-                <h3>My Songs</h3>
+              <div className="col-md-7">
+                <h3>Your Songs</h3>
                 <SongList userUid={user.uid} key={refreshKey} />
               </div>
             </div>
