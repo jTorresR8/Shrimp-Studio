@@ -10,6 +10,8 @@ import { collection, getDocs } from 'firebase/firestore';
 import { db } from './firebase-config';
 import './ui.css'
 
+import DFgraph from './components/graph';
+
 function App() {
   const { user } = useAuth();
   const [refreshKey, setRefreshKey] = useState(0);
@@ -61,6 +63,7 @@ function App() {
         ) : <Navigate to="/signin" />} />
         <Route path="/account" element={user ? <AccountPage songs={songs} playlists={playlists} onUploadSuccess={() => setRefreshKey((prevKey) => prevKey + 1)} onSavePlaylist={(newPlaylist) => setPlaylists([...playlists, newPlaylist])} onUpdatePlaylist={handleUpdatePlaylist} /> : <Navigate to="/signin" />} />
         <Route path="/" element={<Navigate to="/signin" />} />
+        <Route path="/test" element={<DFgraph />} />
       </Routes>
     </Router>
   );
