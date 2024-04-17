@@ -45,7 +45,7 @@ function App() {
       <Routes>
         <Route path="/signin" element={!user ? <SignInandSignUp /> : <Navigate to="/home" />} />
         <Route path="/home" element={user ? (
-          <div className="App-container">
+          <div className="container my-1">
             <h1 className="main">Shrimp Studio</h1>
             <div className="row">
               <div className="col-md-4">
