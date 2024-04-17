@@ -40,6 +40,7 @@ const SongList = ({ userUid }) => {
     <div>
       <input
         type="text"
+        className = "search-input"
         placeholder="Search for a song..."
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
