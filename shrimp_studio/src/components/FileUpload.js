@@ -43,7 +43,7 @@ const FileUpload = ({ onUploadSuccess }) => {
   };
 
   return (
-    <div>
+    <div className='file-upload'>
       <input type="file" onChange={handleChange} accept="audio/mp3" />
       <button onClick={handleUpload}>Upload</button>
     </div>

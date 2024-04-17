@@ -4,13 +4,14 @@ import PlaylistManager from './PlaylistManager';
 
 const AccountPage = ({ playlists = [], songs = [], onUploadSuccess, onSavePlaylist, onUpdatePlaylist }) => {
     return (
-        <div className="container my-4">
-            <h1>My Account</h1>
-            <div className="my-4">
-                <h3>Music Upload</h3>
-                <FileUpload onUploadSuccess={onUploadSuccess} />
+        <div className="container my-1">
+            <div className = "account-header">
+                <h1>My Account</h1>
+                <div className="my-4">
+                    <h3>Music Upload</h3>
+                    <FileUpload onUploadSuccess={onUploadSuccess} />
+                </div>
             </div>
-
             <div className='row'>
                 <div className="col-md-4">
                     <h3>Playlist Manager</h3>
