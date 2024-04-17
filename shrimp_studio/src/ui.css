@@ -1,18 +1,23 @@
-.playlist-filler{
+.root {
+    background-color: black;
+}
+
+.playlist-filler {
     background-color: rgb(54, 54, 54);
     border-radius: 18px;
     padding: 8px;
     padding-left: 20px;
+    padding-right: 0px;
     color: white;
     border: none;
 }
 
-.playlist-filler::placeholder{
-    color:rgb(180, 180, 180);
+.playlist-filler::placeholder {
+    color: rgb(180, 180, 180);
     font-weight: 500;
 }
 
-.playlist-button{
+.playlist-button {
     background-color: #ff5c20;
     border: none;
     border-radius: 15px;
@@ -24,16 +29,24 @@
     transition: transform 0.05s ease-in-out;
 }
 
-.playlist-button:hover{
+.playlist-button:hover {
     /* background-color: #ff6d38; */
     transform: scale(1.02);
 }
 
-.App-container{
+.playlist-dropdown select{
+    color: rgb(180, 180, 180);
+    background-color: rgb(54, 54, 54);
+    border-radius: 30px;
+    padding: 8px;
+    border: none;
+}
+
+.App-container {
     background-color: black;
 }
 
-.main{
+.main {
     background-color: rgb(31, 31, 31);
     margin: 10px;
     border-radius: 10px;
@@ -41,7 +54,7 @@
     color: white;
 }
 
-.col-md-4{
+.col-md-4 {
     background-color: rgb(31, 31, 31);
     color: white;
     border-radius: 20px;
@@ -51,11 +64,12 @@
 
 .col-md-4 p,
 .col-md-4 h3 {
-  padding-left: 20px; /* Adjust as needed */
+    padding-left: 20px;
+    /* Adjust as needed */
 }
 
 
-.col-md-7{
+.col-md-7 {
     background-color: rgb(31, 31, 31);
     color: white;
     border-radius: 20px;
@@ -65,28 +79,74 @@
 }
 
 .col-md-7 h3 {
-  padding-left: 20px; /* Adjust as needed */
-  padding-bottom: 10px;
-  font-weight: bold;
+    padding-left: 20px;
+    /* Adjust as needed */
+    padding-bottom: 10px;
+    font-weight: bold;
 }
 
-.col-md-7 p{
+.col-md-7 p {
     margin: 10px;
     padding: 10px;
-    padding-left: 20px; /* Adjust as needed */
+    padding-left: 20px;
+    /* Adjust as needed */
 }
 
-.col-md-7 p:hover{
+.col-md-7 p:hover {
     background-color: rgb(40, 40, 40);
     border-radius: 10px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-.container{
-    background-color: black;
+.col-md-7 ::placeholder{
+    color: rgb(180, 180, 180);
+    background-color: rgb(54, 54, 54);
+    border: none;
+    border: 20px;
 }
 
-.form-check-input{
+.account-header {
+    background-color: rgb(40, 40, 40);
+    color: white;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 10px;
+
+}
+
+.form-check-input {
     margin: 10px;
     padding: 10px;
+}
+
+.my-4 button {
+    background-color: #ff5c20;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    margin: 20px;
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: transform 0.05s ease-in-out;
+}
+
+.my-4 button:hover {
+    transform: scale(1.02);
+}
+
+.file-upload button {
+    background-color: #ff5c20;
+    border: none;
+    border-radius: 15px;
+    color: white;
+    margin: 20px;
+    padding: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: transform 0.05s ease-in-out;
+}
+
+.file-upload button:hover {
+    transform: scale(1.02);
 }
