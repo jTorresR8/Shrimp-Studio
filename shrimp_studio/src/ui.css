@@ -8,6 +8,8 @@
     padding: 8px;
     padding-left: 20px;
     padding-right: 0px;
+    margin: 15px;
+    margin-left: 10px;
     color: white;
     border: none;
 }
@@ -153,5 +155,10 @@
 
 .search-input{
     border: none;
-    color: orange;
+    color: white;
+    background-color: rgb(54, 54, 54);
+    border-radius: 20px;
+    padding: 8px;
+    margin: 8px;
+    margin-left: 30px;
 }
