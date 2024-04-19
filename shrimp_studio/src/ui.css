@@ -92,6 +92,24 @@
     font-weight: bold;
 }
 
+.col-md-7 .my-2 {
+    padding-left: 20px;
+    /* Adjust as needed */
+    padding-bottom: 10px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.col-md-7 .my-2:hover {
+    background-color: rgb(54, 54, 54);
+    padding-left: 20px;
+    /* Adjust as needed */
+    padding-bottom: 10px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 .col-md-7 p {
     margin: 10px;
     padding: 10px;
@@ -105,11 +123,14 @@
     cursor: pointer;
 }
 
+
+
 .col-md-7 ::placeholder {
     color: rgb(180, 180, 180);
     background-color: rgb(54, 54, 54);
     border: none;
     border: 20px;
+    padding-left: 10px;
 }
 
 .account-header {
@@ -142,19 +163,28 @@
     transform: scale(1.02);
 }
 
-.file-upload button {
-    background-color: #ff5c20;
+.file-upload-button {
+    background-color: rgb(54, 54, 54);
     border: none;
     border-radius: 15px;
-    color: white;
-    margin: 20px;
+    color: rgb(180, 180, 180);
     padding: 8px;
+    cursor: pointer;
     padding-left: 15px;
-    padding-right: 15px;
-    transition: transform 0.05s ease-in-out;
 }
 
-.file-upload button:hover {
+.file-upload-button:hover {
+    background-color: rgb(60, 60, 60);
+}
+
+input::file-selector-button {
+    border-radius: 10px;
+    border: none;
+    background-color: transparent;
+    display: none;
+}
+
+.file-upload input:hover {
     transform: scale(1.02);
 }
 
@@ -167,6 +197,7 @@
     margin: 8px;
     margin-left: 30px;
 }
+
 
 .navbar {
     background-color: rgba(0, 123, 255, 0.5);
@@ -187,8 +218,5 @@
 
 .everything {
     background-color: black;
-}
-
-.root{
-    background-color: black;
+    min-height: 100vh;
 }
