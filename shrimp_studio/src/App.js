@@ -13,33 +13,34 @@ import './ui.css'
 import DFgraph from './components/graph';
 
 function App() {
-  const { user } = useAuth();
-  const [refreshKey, setRefreshKey] = useState(0);
-  const [songs, setSongs] = useState([]);
-  const [playlists, setPlaylists] = useState([]);
+    const { user } = useAuth();
+    const [refreshKey, setRefreshKey] = useState(0);
+    const [songs, setSongs] = useState([]);
+    const [playlists, setPlaylists] = useState([]);
 
-  useEffect(() => {
-    const fetchSongs = async () => {
-      const querySnapshot = await getDocs(collection(db, 'songs'));
-      const fetchedSongs = querySnapshot.docs.map((doc) => ({
-        songId: doc.id,
-        ...doc.data(),
-      }));
-      setSongs(fetchedSongs);
+    useEffect(() => {
+        const fetchSongs = async () => {
+            const querySnapshot = await getDocs(collection(db, 'songs'));
+            const fetchedSongs = querySnapshot.docs.map((doc) => ({
+                songId: doc.id,
+                ...doc.data(),
+            }));
+            setSongs(fetchedSongs);
+        };
+
+        fetchSongs();
+    }, [refreshKey]);
+
+    const handleUpdatePlaylist = (playlistName, newSongs) => {
+        setPlaylists((prevPlaylists) =>
+            prevPlaylists.map((playlist) =>
+                playlist.name === playlistName
+                    ? { ...playlist, songs: [...playlist.songs, ...newSongs] }
+                    : playlist
+            )
+        );
     };
 
-    fetchSongs();
-  }, [refreshKey]);
-
-  const handleUpdatePlaylist = (playlistName, newSongs) => {
-    setPlaylists((prevPlaylists) =>
-      prevPlaylists.map((playlist) =>
-        playlist.name === playlistName
-          ? { ...playlist, songs: [...playlist.songs, ...newSongs] }
-          : playlist
-      )
-    );
-  };
 
   return (
     <Router>
@@ -67,6 +68,7 @@ function App() {
       </Routes>
     </Router>
   );
+
 }
 
 export default App;
