@@ -1,39 +1,66 @@
 .aquatic-background {
-    background: linear-gradient(to bottom, #00b3ff, #0096c7);
+    background-color: black;
     color: #fff;
-  }
-  
-  .aquatic-card {
-    background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+.aquatic-title {
+    color: white;
+    font-weight: bolder;
+    padding-top: 30px;
+}
+
+.card-body {
+    background-color: rgb(31, 31, 31);
+    border: none;
     border-radius: 20px;
-  }
-  
-  .aquatic-title {
-    font-family: 'Pacifico', cursive;
-    color: #0096c7;
-  }
-  
-  .shrimp-icon {
-    font-size: 1.5rem;
-  }
-  
-  .aquatic-input {
-    background-color: rgba(0, 150, 199, 0.2);
-    border-color: #0096c7;
-    color: #0096c7;
-  }
-  
-  .aquatic-input::placeholder {
-    color: #0096c7;
-    opacity: 0.6;
-  }
-  
-  .aquatic-button {
-    background-color: #0096c7;
-    border-color: #0096c7;
-  }
-  
-  .aquatic-button:hover {
-    background-color: #00b3ff;
-    border-color: #00b3ff;
-  }
+    color: white;
+}
+
+.card-body button{
+    background-color: #ff5c20;
+    border: none;
+    border-radius: 15px;
+    margin: 20px;
+    margin-top: 0px;
+}
+
+.card-body button:hover {
+    background-color: #ff7644;
+}
+
+.form-label {
+    color: white;
+    margin: 20px;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.mb-3 input {
+    background-color: rgb(54, 54, 54);
+    border: none;
+    margin: 5px 20px;
+    /* Adjusted margin */
+    margin-top: 0px;
+    margin-bottom: 5px;
+    border-radius: 20px;
+    max-width: calc(100% - 40px);
+    /* Set maximum width */
+}
+
+.form-control.sign-in-placeholder {
+    color: white;
+    padding: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(54, 54, 54);
+}
+
+.form-control.sign-in-placeholder::placeholder {
+    color: rgb(180, 180, 180);
+}
+
+.form-control.sign-in-placeholder:focus {
+    background-color: rgb(54, 54, 54);
+    color: white;
+}
